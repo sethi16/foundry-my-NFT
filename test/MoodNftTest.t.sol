@@ -26,6 +26,7 @@ function testOfExistence() public {
     moodNft.mintNft();
     console.log(moodNft.tokenURI(0));
     assert(moodNft.balanceOf(bob) == 1);
+    // Here, bob got the balance of 1, because he minted the NFT
 }
  function testTokenURIDefaultIsCorrectlySet() public {
         vm.prank(bob);
@@ -33,17 +34,19 @@ function testOfExistence() public {
         console.log(moodNft.tokenURI(0));
         assert(keccak256(abi.encodePacked(moodNft.tokenURI(0))) == keccak256(abi.encodePacked(Happy)));
     }
-
+// Always, remember to use mint function to get the nft, a hollow nft will be created, then tokenUrl will set the nft!
     function testFlipTokenToSad() public {
-        vm.prank(bob);
+         vm.prank(bob);
         moodNft.mintNft();
-
-        vm.prank(bob);
+// Need to call the user for every contract function, so that the user can interact with the contract
+      vm.prank(bob);
         moodNft.flipMood(0);
         console.log(moodNft.tokenURI(0));
         // Imp, The string we get from tokenURI is a different string, compared to teh base64 encoded string
         // So we need to compare by getting the string though console.log, that string is the one we need to compare
        assert(keccak256(abi.encodePacked(moodNft.tokenURI(0))) == keccak256(abi.encodePacked(Sad)));
+
+        
     }
 
 
