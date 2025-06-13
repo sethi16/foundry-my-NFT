@@ -17,9 +17,12 @@ contract DeployMoodNft is Script {
         return moodNft;
     }
     // Remember, Otherthan than src file, pure is only used when we are doing calculation here we have done concatenation
+
     function svgToImageUrl(string memory svg) public pure returns (string memory){
         string memory prefiSvgImage = "data:image/svg+xml;base64,";
+// "data:image/svg+xml;base64," stores the image itself (an SVG image) encoded as a Base64 string
         string memory SvgUrlImage = (Base64.encode(bytes(abi.encodePacked(svg))));
+//Base64.encode helps to encode into string
         return string(abi.encodePacked(prefiSvgImage, SvgUrlImage));
 // abi.encodePacked(arg); also helps in concatenating strings
     }
