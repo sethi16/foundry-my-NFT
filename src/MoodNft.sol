@@ -33,6 +33,12 @@ constructor(string memory happySviUrl, string memory sadSviUrl) ERC721("MoodNFT"
     }
     function _baseURI() internal view virtual override returns (string memory) {
         return "data:application/json;base64,";
+// Other than storing the image data, NFTs also need to store metadata about the whole NFT, such as:
+//Name of the NFT
+//Description
+//Attributes or properties (like color, rarity, stats)
+//The image link or data itself
+
     } 
        function flipMood(uint256 tokenId) public {
         if (getApproved(tokenId) != msg.sender && ownerOf(tokenId) != msg.sender) {
@@ -53,8 +59,10 @@ constructor(string memory happySviUrl, string memory sadSviUrl) ERC721("MoodNFT"
         }
         string memory imageURI = Happy_Svi_Url;
         if(s_tokenIdToMood[tokenId] == Mood.Sad){
-            imageURI = Sad_Svi_Url;
-        }
+            imageURI = Sad_Svi_Url; 
+}
+// In the return, abi.encodePacked is used for adding twice
+// first time it add the string text data of Image, stores the image itself (an SVG image) encoded as a Base64 string.
         return string
         (abi.encodePacked(_baseURI(),
          Base64.encode(bytes(abi.encodePacked(   '{"name":"',
