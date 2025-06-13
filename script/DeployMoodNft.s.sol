@@ -8,6 +8,7 @@ import  "@openzeppelin/contracts/utils/Base64.sol"; // Importing Base64 for enco
 contract DeployMoodNft is Script {
 
     function run() public returns(MoodNft) {
+// When we read File code it's type is normal stirng not base, for base we need to convert
         string memory SvgHappy = vm.readFile("./DynamicPic/Happy.svg");
         string memory SvgSad  = vm.readFile("./DynamicPic/Sad.svg");
         // check remapping for this cheatcode, 6th & 7th
