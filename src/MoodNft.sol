@@ -61,18 +61,19 @@ constructor(string memory happySviUrl, string memory sadSviUrl) ERC721("MoodNFT"
         if(s_tokenIdToMood[tokenId] == Mood.Sad){
             imageURI = Sad_Svi_Url; 
 }
-// In the return, abi.encodePacked is used for adding twice
-// first time it add the string text data of Image, stores the image itself (an SVG image) encoded as a Base64 string.
+// In the return, abi.encodePacked is used for concat & converting to bytes, can do both tasks in a single step
+//  Base64.encode convert bytes to base64 string
+// normal string ='HelloWorld'
+// Base64 string ='PEJFDIFISJFISJIRSNDSKLNSIFLKFIWRKNSFDGNF' this stirng hold the image data
         return string
         (abi.encodePacked(_baseURI(),
-         Base64.encode(bytes(abi.encodePacked(   '{"name":"',
+         Base64.encode(abi.encodePacked( '{"name":"',
                             name(), // You can add whatever name here
                             '", "description":"An NFT that reflects the mood of the owner, 100% on Chain!", ',
                             '"attributes": [{"trait_type": "moodiness", "value": 100}], "image":"',
                             imageURI,
                             '"}'
                             )
-                    )
              )
         )
     );
