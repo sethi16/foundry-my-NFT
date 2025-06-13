@@ -22,7 +22,7 @@ contract DeployMoodNft is Script {
         string memory prefiSvgImage = "data:image/svg+xml;base64,";
 // "data:image/svg+xml;base64," stores the image itself (an SVG image) encoded as a Base64 string
         string memory SvgUrlImage = (Base64.encode(abi.encodePacked(svg)));
-//Base64.encode helps to encode into string
+//Base64.encode helps to encode into base64 string different from normal string it is like 'WRRJGISHGSRSIHNSFIJEDSJSID'
         return string(abi.encodePacked(prefiSvgImage, SvgUrlImage));
 // abi.encodePacked(arg); also helps in concatenating strings
     }
