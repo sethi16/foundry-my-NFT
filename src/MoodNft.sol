@@ -27,9 +27,9 @@ constructor(string memory happySviUrl, string memory sadSviUrl) ERC721("MoodNFT"
 }
     function mintNft() public {
       uint256  tokenId = s_tokenCounter;
-        _safeMint(msg.sender, s_tokenCounter);
+        _safeMint(msg.sender, tokenId);
         s_tokenCounter++;
-        emit CreatedNFT(s_tokenCounter );
+        emit CreatedNFT(tokenId );
     }
     function _baseURI() internal view virtual override returns (string memory) {
         return "data:application/json;base64,";
