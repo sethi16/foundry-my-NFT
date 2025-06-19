@@ -65,6 +65,12 @@ constructor(string memory happySviUrl, string memory sadSviUrl) ERC721("MoodNFT"
 //  Base64.encode convert bytes to base64 string
 // normal string ='HelloWorld'
 // Base64 string ='PEJFDIFISJFISJIRSNDSKLNSIFLKFIWRKNSFDGNF' this stirng hold the image data
+// Exactly! The final product is a normal string (like "hello world"), but inside that string, there’s a base64-encoded segment representing your JSON or SVG data.
+// What does abi.encodePacked(...) do?
+// It takes one or more arguments, converts each to bytes, and concatenates them into a single bytes array.
+//If there is only one input it just converts to bytes, not required to have always two input to add, if there is one it can just converts into byte
+// It does not require the arguments to be the same type.
+//It’s like joining pieces of data together in binary form.
         return string
         (abi.encodePacked(_baseURI(),
          Base64.encode(abi.encodePacked( '{"name":"',
